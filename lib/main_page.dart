@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'qr_button.dart';
 import 'text_title.dart';
 import 'textfield_content.dart';
 
@@ -24,11 +24,10 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   String dropdownValue = 'select error code';
+  String _qrCode = '';
 
   @override
   Widget build(BuildContext context) {
-    var _onQRViewCreated;
-    var qrKey;
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.all(10),
@@ -47,17 +46,13 @@ class _MainPageState extends State<MainPage> {
             const SizedBox(
               height: 30,
             ),
-            const Text(
-              'QR Code',
-              style: TextStyle(color: Colors.blue),
-              textAlign: TextAlign.left,
-            ),
-            Center(
-              child: QRView(
-                key: qrKey,
-                onQRViewCreated: _onQRViewCreated,
-              ),
-            ),
+            const TextTitle(label: 'QR Code'),
+            QRButton(onPress: (receivedString) async {
+              String newQR = await receivedString;
+              setState(() {
+                _qrCode = newQR;
+              });
+            }),
             const Divider(),
             const TextTitle(label: 'Error Code'),
             DropdownButton(
