@@ -37,6 +37,8 @@ dependencies:
   url_launcher: ^6.0.12
   qr_code_scanner: ^0.5.2
 
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
