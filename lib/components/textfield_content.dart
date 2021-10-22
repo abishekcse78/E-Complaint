@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'non_variables/constants.dart';
+import '../non_variables/constants.dart';
 
 class TextFieldContent extends StatelessWidget {
   const TextFieldContent({required this.hint});

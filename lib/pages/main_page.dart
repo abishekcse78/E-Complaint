@@ -1,11 +1,11 @@
-import 'package:e_complaint/dropdown.dart';
+import 'package:e_complaint/components/dropdown.dart';
+import 'package:e_complaint/components/qr_section.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'qr_button.dart';
-import 'text_title.dart';
-import 'textfield_content.dart';
+import '../components/text_title.dart';
+import '../components/textfield_content.dart';
 
 _makingPhoneCall() async {
   const url = 'tel:6374274980';
@@ -18,7 +18,6 @@ _makingPhoneCall() async {
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
-
   @override
   _MainPageState createState() => _MainPageState();
 }
@@ -48,14 +47,17 @@ class _MainPageState extends State<MainPage> {
               height: 30,
             ),
             const TextTitle(label: 'QR Code'),
-            QRButton(onPress: (receivedString) async {
-              String newQR = await receivedString;
-              setState(() {
-                _qrCode = newQR;
-              });
-            }),
-            Text(_qrCode == '' ? 'Open QR Scanner' : _qrCode,
-                textAlign: TextAlign.center),
+            QRSection(
+              onPress: (receivedString) async {
+                String newQR = await receivedString;
+                setState(
+                  () {
+                    _qrCode = newQR;
+                  },
+                );
+              },
+              //rqCode = newQR;
+            ),
             const Divider(),
             const TextTitle(label: 'Error Code'),
             CustomDropdown(

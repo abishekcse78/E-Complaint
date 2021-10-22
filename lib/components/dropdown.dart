@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'non_variables/error_code.dart';
+import '../non_variables/error_code.dart';
 
 class CustomDropdown extends StatelessWidget {
   const CustomDropdown(
