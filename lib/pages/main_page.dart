@@ -1,3 +1,4 @@
+import 'package:e_complaint/dropdown.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -23,7 +24,7 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  String dropdownValue = 'select error code';
+  String _selectedError = 'Select Error Code';
   String _qrCode = '';
 
   @override
@@ -53,22 +54,17 @@ class _MainPageState extends State<MainPage> {
                 _qrCode = newQR;
               });
             }),
+            Text(_qrCode == '' ? 'Open QR Scanner' : _qrCode,
+                textAlign: TextAlign.center),
             const Divider(),
             const TextTitle(label: 'Error Code'),
-            DropdownButton(
-              value: dropdownValue,
-              onChanged: (String? newValue) {
+            CustomDropdown(
+              onChange: (value) {
                 setState(() {
-                  dropdownValue = newValue!;
+                  _selectedError = value;
                 });
               },
-              items: <String>['select error code', 'E1', 'E2', 'E3', 'E4', 'E5']
-                  .map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
+              selectedError: _selectedError,
             ),
             const SizedBox(
               height: 5,

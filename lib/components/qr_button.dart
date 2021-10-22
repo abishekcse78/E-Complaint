@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'qr_scan.dart';
+import 'pages/qr_scan.dart';
 
 class QRButton extends StatelessWidget {
   const QRButton({Key? key, required this.onPress}) : super(key: key);
